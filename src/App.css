@@ -1,0 +1,75 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: sans-serif;
+}
+
+.pokemons {
+  max-width: 1180px;
+
+}
+
+.listOfPOkimons {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+
+.listOfPOkimons>li {
+  width: 180px;
+  min-height: 240px;
+  height: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, .2);
+  padding: 20px 5px;
+  text-align: center;
+  
+}
+.listOfPOkimons>li > div{
+padding: 10px;
+}
+
+.listOfPOkimons>li img {
+  background-color: #f2f2f2;
+  width: 142px;
+}
+
+
+.FilterPokemons {
+  width: 100%;
+  display: flex;
+}
+
+.FilterPokemons>div {
+  position: relative;
+  box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, .2);
+  margin: 10px 30px;
+  padding: 5px 15px;
+}
+
+.filterTypes {
+  position: absolute;
+  z-index: 100;
+  background: white;
+  box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, .2);
+
+}
+
+.filterTypes>div {
+  padding: 5px 15px;
+}
+
+
+.filterTypes>div:hover {
+  color: white;
+  background-color: #397F84;
+}
