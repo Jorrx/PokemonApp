@@ -1,46 +1,61 @@
-import axios from 'axios'
-import { FC, memo } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import Loader from '../assets/loader.gif'
-import { useNavigate } from 'react-router-dom'
+import axios from "axios";
+import { FC, memo } from "react";
+import { useQuery } from "@tanstack/react-query";
+
+import { useNavigate } from "react-router-dom";
+import MyLoader from "./UI/MyLoader";
+import PokemonListItemContent from "./PokemonListItem/PokemonListItemContent";
+import { useAppDispatch } from "../hooks/redux";
+import { setPokemonItemData } from "../store/PokemonItemSlice";
+import PokemonItemImg from "./PokemonListItem/PokemonItemImg";
 
 interface iProp {
-    name: string,
-    url: string,
+    name: string;
+    url: string;
 }
 
-const ListItemQuery = async (url: string) => await axios.get(url).then((res) => {
-    return res.data
-})
+const ListItemQuery = async (url: string) =>
+    await axios.get(url).then((res) => {
+        return res.data;
+    });
 
 const PokemItem: FC<iProp> = ({ name, url }) => {
-
     const { isPending, error, data } = useQuery({
-        queryKey: ['dataUrl', name],
-        queryFn: () => ListItemQuery(url)
-    })
+        queryKey: ["dataUrl", name],
+        queryFn: () => ListItemQuery(url),
+    });
+
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
+    const handleNavigate = () => {
+        dispatch(setPokemonItemData(data));
+        navigate("/pokemon/" + data?.name);
+    };
+
     return (
-        <li>
-            {error && 'An error has occurred: ' + error?.message}
-            {isPending ? <img src={Loader} alt="" /> :
+        <li className="pokemon_Item">
+            {error && "An error has occurred: " + error?.message}
+            {isPending ? (
+                    <MyLoader />
+            ) : (
                 <div>
-                    <div style={{ width: '100%', height: '142px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${data?.id}.png`} alt="Pokimon Img" onClick={() => {
-                            navigate('/pokemon/' + data?.name)
-                        }} width='100%' />
-                    </div>
-                    <div>{data?.name}</div>
-                    <div>#{data?.id}</div>
-                    <div>{data?.types?.map((type: any) =>
-                        <span key={type.type.name} style={{ marginRight: '5px' }}>{type.type.name}</span>
-                    )}</div>
+                    <PokemonItemImg
+                        url={data.sprites.other["official-artwork"].front_default}
+                        onClick={handleNavigate}
+                    />
+                    <p className="pokemon_item_name">{data?.name}</p>
+                    <p className="pokemon_item_id">
+                        #
+                        {(data?.id < 10 && `00${data.id}`) ||
+                            (data?.id < 100 && `0${data.id}`) ||
+                            data.id}
+                    </p>
+                    <PokemonListItemContent types={data?.types} />
                 </div>
-            }
+            )}
         </li>
-    )
-}
+    );
+};
 
-export default memo(PokemItem)
-
+export default memo(PokemItem);

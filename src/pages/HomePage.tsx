@@ -1,10 +1,9 @@
-import PokemonList from "../components/PokemonList"
+import Pokemons from "../components/Pokemons"
 
 const HomePage = () => {
     return (
         <div>
-                <PokemonList />
-
+                <Pokemons />
         </div>
     )
 }

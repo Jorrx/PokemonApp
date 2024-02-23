@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import PokemonItemInfo from '../components/PokemonItemInfo'
+import PokemonItemInfo from '../components/PokemonItemInfo/PokemonItemInfo'
 
 
 

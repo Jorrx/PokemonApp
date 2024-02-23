@@ -1,0 +1,178 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.filtration {
+    position: relative;
+}
+
+.FilterPokemons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.Filter_Pokemons_search {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.FilterPokemons {
+    justify-content: space-between;
+}
+
+.Pokemon_Filter_Method {
+    box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 8px 6px 8px 12px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.Pokemon_Filter_Method > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    text-align: center;
+}
+
+.Pokemon_Filter_Method.search {
+    padding: 0;
+    display: flex;
+    width: 280px;
+    height: 40px;
+}
+
+.Pokemon_Filter_Method.search > input {
+    padding: 8px 6px 8px 12px;
+    border: none;
+    width: 100%;
+    outline: none   ;
+}
+
+.Pokemon_Filter_Method.search > input::placeholder {
+    font-size: 1rem;
+    font-family: Quicksand, sans-serif;
+}
+
+.Pokemon_Filter_Method.search > button {
+    max-width: 40px;
+    width: 100%;
+    background-color: #397f84;
+    border: none;
+    cursor: pointer;
+}
+
+.Pokemon_Filter_Method {
+    position: relative;
+}
+
+.Pokemon_filter_item {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    text-align: center;
+    z-index: 111;
+    background: white;
+    box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.Pokemon_filter_item > div {
+    padding: 8px 12px;
+    font-weight: 400;
+}
+
+.Pokemon_filter_item > div:hover {
+    background: #397f84;
+    color: white;
+    padding: 8px 12px;
+}
+
+.Pokemon_filter_item.pokemons_filtered_by_Types {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: auto;
+}
+
+.pokemons_filtered_by_Types > div {
+    padding: 8px 12px;
+    width: 120px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.filter_types {
+    position: absolute;
+    z-index: 100;
+    background: white;
+    box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.Pokemon_Items_limit {
+    display: flex;
+    align-items: center;
+    color: #397f84;
+}
+
+.Pokemon_Items_limit > .Pokemon_Filter_Method {
+    box-shadow: none;
+    min-width: 56px;
+}
+
+.Pokemon_filter_item {
+    width: 100%;
+}
+
+.Pokemon_Filter_Method.active {
+    box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 1050px) {
+    .Filter_Pokemons_search {
+        display: grid;
+        grid-template-columns: 20fr auto 0fr;
+
+    }
+    .FilterPokemons {
+        gap: 0;
+    }
+}
+
+@media (max-width: 769px) {
+    .Filter_Pokemons_search {
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        gap: 20px;
+    }
+    .pokemons_filtered_by_Types > div{
+        width: auto;
+    }
+    .Pokemon_Filter_Method.select_sort_filter {
+        width: 100%;
+        margin: 0;
+    }
+    .Pokemon_Filter_Method.select_sort_filter p {
+        font-size: 0.875rem;
+    }
+    .Pokemon_filter_item.pokemons_filtered_by_Types {
+        width: 100%;
+    }
+    .select_sort_filter {
+        margin-left: 0;
+    }
+
+    .Pokemon_Filter_Method.search {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+}
+
+@media (max-width: 550px) {
+    .Filter_Pokemons_search {
+        grid-template-columns: 1fr;
+    }
+}

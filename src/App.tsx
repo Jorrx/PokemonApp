@@ -1,20 +1,18 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import './App.css'
-import AppRouter from './components/AppRouter'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "./App.css";
+import AppRouter from "./components/AppRouter";
 
-
-
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 const App = () => {
+    return (
+        <main>
+            <QueryClientProvider client={queryClient}>
+                <div className="pokemons">
+                    <AppRouter />
+                </div>
+            </QueryClientProvider>
+        </main>
+    );
+};
 
-
-  return (
-    <div>
-      <QueryClientProvider client={queryClient}>
-        <AppRouter />
-      </QueryClientProvider>
-    </div>
-  )
-}
-
-export default App
+export default App;
